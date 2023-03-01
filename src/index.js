@@ -14,12 +14,21 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'resources/views'));
 
-console.log('test patch',path.join(__dirname, 'public/img'))
-
 app.use(express.static(path.join(__dirname, 'public')))
+
+// add middleware
+app.use(express.urlencoded({extended : true})) // form HtML
+app.use(express.json()) // Lib fetch axios...
 
 app.get('/', (req, res) => {
   res.render('home')
+})
+app.get('/search', (req, res) => {
+  res.render('search')
+})
+app.post('/search', (req, res) => {
+  console.log(req.body)
+  res.send('Post : search')
 })
 
 app.listen(port, () => 
