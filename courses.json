@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "6401fb6de225bbb2402d8a61"
+  },
+  "name": "javascript",
+  "cost": "1000",
+  "description": "this is the first language i learn and i want to best thus language"
+},{
+  "_id": {
+    "$oid": "6401fc26e225bbb2402d8a62"
+  },
+  "name": "python",
+  "cost": "2000",
+  "description": "this is the language i  will learn to best because i will follow the data engineer\n"
+},{
+  "_id": {
+    "$oid": "6401fc9ae225bbb2402d8a63"
+  },
+  "name": "html-css",
+  "cost": "500",
+  "description": "two highper text language to make aweb dite"
+}]
