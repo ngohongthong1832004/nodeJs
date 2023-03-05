@@ -25,6 +25,7 @@
     "express": "^4.18.2",
     "express-handlebars": "^6.0.7",
     "handlebars": "^4.7.7",
+    "method-override": "^3.0.0",
     "mongoose": "^7.0.0",
     "morgan": "^1.10.0",
     "node-sass": "^8.0.0",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
+    "mongoose-delete": "^0.5.4",
     "prettier": "^2.8.4"
   }
 }

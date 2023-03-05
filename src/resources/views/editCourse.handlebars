@@ -1,0 +1,24 @@
+<h1>Edit Course</h1>
+
+
+<div class="p-4">
+    <form method="POST" action="/me/my-course/{{course._id}}?_method=PUT">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Name Course</label>
+        <input name="name" value="{{course.name}}" id = "Name" type="text" class="form-control" id="exampleFormControlInput1">
+      </div>
+       <div class="form-group">
+        <label for="exampleFormControlInput1">Cost</label>
+        <input name="cost" value="{{course.cost}}" id = "Cost" type="text" class="form-control" id="exampleFormControlInput1">
+      </div>
+     <div class="form-group">
+        <label for="exampleFormControlInput1">Description</label>
+        <input name="description" value="{{course.description}}" id = "Description" type="text" class="form-control" id="exampleFormControlInput1">
+      </div>
+       <div class="form-group">
+        <label for="exampleFormControlInput1">Slug</label>
+        <input name="slug" value="{{course.slug}}" id = "Slug" type="text" class="form-control" id="exampleFormControlInput1">
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">Edit course</button>
+    </form>
+</div>

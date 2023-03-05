@@ -1,0 +1,87 @@
+<h2>My Course</h2>
+
+<div class="p-4">
+
+  <div class="p-4">
+    <a href="/me/bin">Recycle Bin =></a>
+  </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Cost</th>
+          <th scope="col">Description</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each course}}
+        <tr>
+            {{! sum is the custom function in instance handlebar from 'src/index.js' Usage : nameFunction_param1_param2_...  }}
+          <th scope="row">{{sum @index 1}}</th>
+          <td>{{this.name}}</td>
+          <td>{{this.cost}}</td>
+          <td>{{this.description}}</td>
+          <td>
+            <a href="/me/my-course/edit/{{this._id}}">
+            <button type="button" class="btn btn-outline-dark">Edit</button>
+            </a>
+            {{!-- <a href="/me/my-course/delete/{{this._id}}"> --}}
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-id="{{this._id}}" data-target="#exampleModal" >Delete</button>
+            {{!-- </a> --}}
+          </td>
+        </tr>
+        {{else}}
+          <tr>
+            <td>
+              <span>YOU don't have your course =></span>
+              <a href="/course/create">Create Course</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you  want to delete this course ?
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete" type="button" class="btn btn-danger" data-dismiss="modal" >Yes</button>
+        <button type="button" class="btn btn-primary">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{! DELETE form  }}
+ <form method="POST" id="delete-form"></form>
+
+<script>
+  document.addEventListener('DOMContentLoaded',() => {
+    let courseId
+    const deleteForm = document.getElementById('delete-form')
+    const btnDelete = document.getElementById('btn-delete')
+
+    $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+    var id= button.data('id') 
+    courseId = id
+    })
+
+    btnDelete.onclick = () => {
+      deleteForm.action = '/me/my-course/delete/'+ courseId +'?_method=DELETE'
+      deleteForm.submit()
+    }
+  })
+</script>
