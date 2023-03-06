@@ -6,9 +6,13 @@ class MeController {
 
     // [GET] /me/my-course/:slug(show)
     show(req, res, next) {
-        Course.find({})
-        .then((course) => res.render('myCourse', {course : multipleMongooseToObject(course)}))
+        Promise.all([Course.find({}),Course.countDocumentsDeleted({})])
+        .then(([course, deleteCount]) => res.render('myCourse', {
+            deleteCount,
+            course : multipleMongooseToObject(course)
+        }))
         .catch(next)
+
     }
     //[GET] /me/bin
     showBin(req, res, next) {
@@ -51,6 +55,24 @@ class MeController {
         .catch(next)
     }
 
+    //[POST] /me/my-course/handle-form-actions
+    handleForm(req, res, next){
+        // res.json(req.body)
+        switch(req.body.actions){
+            case 'delete' : {
+                console.log("co do day khong tori oi")
+                // $in loop all item to delete all item in arr
+                Course.delete({_id :{ $in : req.body.courseId }})
+                    .then(res.redirect("back"))
+                    .catch(next)
+                break;
+            }
+            default :{
+                res.redirect("back")
+                break
+            }
+        }
+    }
 }
 
 module.exports = new MeController();

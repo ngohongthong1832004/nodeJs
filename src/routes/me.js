@@ -5,6 +5,8 @@ const meController = require('../app/controllers/meController');
 
 // Follow the order because if you put / on the top then rest is disable
 
+router.post('/my-course/handle-form-actions', meController.handleForm);
+
 router.use('/my-course/edit/:id', meController.edit);
 
 router.put('/my-course/:id', meController.update);
